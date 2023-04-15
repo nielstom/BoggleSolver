@@ -31,9 +31,7 @@ class BoggleSolver:
                         self.letters[r][c] = input_str[counter].lower()
                         counter += 1
             print(numpy.matrix(self.letters))
-            user_happy = input("Look ok? (y/n)")
-            if user_happy != "y":
-                continue
+            print('\n')
             bad_input = False
 
     def parse_wordlist(self):
@@ -59,7 +57,7 @@ class BoggleSolver:
         self.used[row][col] = True
         word_string += self.letters[row][col]
         word_len += 1
-        if self.is_word(word_string):
+        if word_len >= 3 and self.is_word(word_string):
             self.words.append(word_string)
         self.create_words(row-1, col-1, word_string, word_len)
         self.create_words(row-1, col, word_string, word_len)
