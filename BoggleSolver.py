@@ -10,6 +10,7 @@ class BoggleSolver:
         self.letters = []
         self.used = []
         self.words = []
+        self.wordlist_full = []
         self.wordlist = []
         bad_input = True
         while bad_input:
@@ -38,14 +39,18 @@ class BoggleSolver:
     def parse_wordlist(self):
         wordlist_file = open("word-list.txt", "r")
         data = wordlist_file.read()
-        self.wordlist = data.split("\n")
+        self.wordlist_full = data.split("\n")
         wordlist_file.close()
 
     def begin_solving(self):
         # Begin Solving
         for r in range(self.N):
             for c in range(self.N):
+                self.filter_wordlist_by_first_letter(self.letters[r][c])
                 self.create_words(r, c, "", 0)
+
+    def filter_wordlist_by_first_letter(self, first_letter):
+        self.wordlist = [idx for idx in self.wordlist_full if idx[0] == first_letter]
 
     def create_words(self, row, col, word_string, word_len):
         # Recursively try each letter permutation
