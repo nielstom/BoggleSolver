@@ -5,7 +5,8 @@ import numpy
 class BoggleSolver:
     def __init__(self):
         # Initialize Letter Grid
-        self.max_word_len = 6  # CONFIGURE
+        self.min_word_len = 6  # CONFIGURE
+        self.max_word_len = 10  # CONFIGURE
         self.N = 0
         self.letters = []
         self.used = []
@@ -48,16 +49,17 @@ class BoggleSolver:
                 self.create_words(r, c, "", 0)
 
     def filter_wordlist_by_first_letter(self, first_letter):
-        self.wordlist = [idx for idx in self.wordlist_full if idx[0] == first_letter]
+        # Note the curly brackets! Searching sets is O(1). Sets are implemented using has tables.
+        self.wordlist = {idx for idx in self.wordlist_full if idx[0] == first_letter}
 
     def create_words(self, row, col, word_string, word_len):
         # Recursively try each letter permutation
-        if self.used[row][col] or word_len > self.max_word_len:
+        if self.used[row][col] or word_len == self.max_word_len:
             return
         self.used[row][col] = True
         word_string += self.letters[row][col]
         word_len += 1
-        if word_len >= 3 and self.is_word(word_string):
+        if word_len >= self.min_word_len and self.is_word(word_string):
             self.words.append(word_string)
         self.create_words(row-1, col-1, word_string, word_len)
         self.create_words(row-1, col, word_string, word_len)
@@ -76,7 +78,8 @@ class BoggleSolver:
         self.words = sorted(self.words, key=len)
 
     def print_words(self):
-        print(self.words)
+        for word in self.words:
+            print(word)
 
 
 def main():
