@@ -1,2 +1,4 @@
-# BoggleSolver
-Solves Boggle Puzzles
+# PuzzleSolver
+Solves Puzzles
+- Boggle
+- Nonograms
