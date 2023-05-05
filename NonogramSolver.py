@@ -6,28 +6,116 @@ class NonogramSolver:
     def __init__(self):
         # Initialize Grid
         self.row_clues = [  # CONFIGURE***
-            [1, 8],
-            [1, 6],
-            [1, 6],
-            [4],
-            [1, 1],
-            [1, 3],
-            [3, 1],
-            [3, 1, 2],
-            [1, 1, 1],
-            [1, 3],
+            [1, 1, 4, 3, 6, 10],
+            [2, 6, 2, 5, 6],
+            [9, 1, 4, 7],
+            [1, 3, 3, 6, 6, 1, 1],
+            [2, 2, 3, 2, 6, 6, 1],
+            [3, 6, 1, 2, 7, 2],
+            [2, 1, 7, 2, 2],
+            [11, 7],
+            [1, 14, 7],
+            [2, 2, 1, 13, 6],
+
+            [1, 2, 3, 4, 5, 4, 7, 5],
+            [1, 3, 8, 1, 3, 5],
+            [2, 3, 6, 6, 4, 2, 2, 5],
+            [6, 4, 1, 4, 3, 2, 5],
+            [2, 2, 5, 2, 3, 1, 8],
+            [1, 1, 4, 2, 3, 1, 1, 7],
+            [3, 3, 2, 1, 1, 3, 1, 1],
+            [4, 2, 3, 1, 3, 1, 4, 2],
+            [4, 2, 4, 1, 1, 6],
+            [1, 4, 3, 3, 4, 2, 1],
+
+            [3, 4, 4, 7],
+            [4, 3, 8, 8, 1],
+            [3, 4, 3, 4, 6, 1, 5],
+            [4, 4, 17, 6],
+            [1, 4, 1, 13, 9, 5],
+            [9, 5, 1, 4, 1, 9, 3, 1],
+            [2, 8, 1, 6, 8, 2, 1, 2],
+            [1, 1, 4, 2, 6, 4, 1, 4, 2],
+            [5, 1, 2, 7, 3, 1, 2, 3, 1, 1],
+            [7, 11, 2, 9, 1, 1],
+
+            [7, 2, 8, 6],
+            [4, 6, 3, 3, 6],
+            [4, 1, 1, 8, 5, 5],
+            [2, 1, 1, 6, 1, 8, 5],
+            [6, 3, 3, 5, 13],
+            [4, 4, 3, 4, 9, 2],
+            [4, 2, 3, 3, 1, 13, 3],
+            [2, 3, 4, 1, 1, 1, 4, 8, 3],
+            [3, 2, 8, 4, 8, 1],
+            [9, 4, 1, 8, 3],
+
+            [8, 4, 1, 1, 6, 7, 2],
+            [7, 3, 7, 1, 2, 3, 1],
+            [1, 2, 1, 2, 1, 1, 9, 2, 4, 1],
+            [1, 1, 2, 1, 4, 9, 1, 3, 4, 1],
+            [3, 1, 5, 2, 5, 1, 4, 4, 1, 1],
+            [1, 4, 1, 1, 1, 3, 3, 4, 3],
+            [5, 7, 7, 5, 3],
+            [4, 11, 7, 7, 4],
+            [3, 10, 10, 11, 3],
+            [10, 3, 10, 15],
         ]
         self.col_clues = [  # CONFIGURE***
-            [1, 5],
-            [2],
-            [3, 2],
-            [1],
-            [3],
-            [4, 3],
-            [4, 1],
-            [6, 1],
-            [4, 3, 1],
-            [3, 3],
+            [2, 3, 1, 1, 2, 2, 2, 3],
+            [2, 7, 1, 4, 3, 4, 4],
+            [1, 1, 1, 4, 2, 14, 5],
+            [8, 1, 19, 6],
+            [5, 8, 5, 1, 1, 3, 3, 1],
+            [2, 12, 1, 1, 7, 2],
+            [2, 7, 2, 3, 3],
+            [3, 1, 1, 2, 2, 1, 5, 2, 4],
+            [1, 1, 6, 3, 9, 4],
+            [2, 7, 3, 4, 1, 8],
+
+            [3, 7, 1, 3, 4, 3, 4],
+            [4, 6, 3, 5],
+            [4, 5, 4, 3, 2, 4],
+            [4, 8, 2, 1, 4],
+            [1, 12, 6, 3],
+            [1, 1, 5, 3, 1, 2, 6, 1],
+            [2, 2, 2, 2, 3, 8, 1],
+            [3, 3, 1, 2, 3, 3],
+            [5, 6, 3, 2, 2, 1, 2],
+            [5, 2, 2, 6, 11, 2, 2],
+
+            [2, 1, 3, 16, 1, 2],
+            [4, 3, 18, 1, 4, 2],
+            [2, 4, 1, 1, 2, 8, 2, 2],
+            [3, 3, 6, 9, 2, 9],
+            [4, 2, 6, 6, 1, 9],
+            [2, 1, 2, 6, 4, 3, 10],
+            [3, 3, 1, 4, 1, 3, 4],
+            [1, 1, 1, 1, 6, 1, 3, 1, 11, 4],
+            [3, 3, 4, 1, 6, 1, 1, 4, 4, 5],
+            [3, 6, 1, 1, 1, 6, 8, 4, 3],
+
+            [8, 6, 7, 1, 1, 1],
+            [8, 1, 7, 4, 1, 5],
+            [1, 7, 2, 10, 8, 1],
+            [2, 12, 8, 1, 9, 2],
+            [12, 9, 8, 4],
+            [12, 7, 16],
+            [3, 1, 4, 4, 1, 10, 6],
+            [4, 4, 2, 2, 9, 5],
+            [1, 4, 1, 4, 13, 4],
+            [4, 4, 2, 3, 15, 3],
+
+            [3, 1, 2, 1, 2, 5, 7, 5, 3],
+            [2, 1, 2, 5, 4, 1, 3, 3],
+            [2, 9, 3, 3, 3, 2],
+            [2, 2, 9, 3, 5, 1, 2],
+            [2, 13, 1, 3, 2, 1, 2],
+            [1, 10, 3, 3, 4, 1, 2],
+            [1, 9, 3, 3, 1, 1],
+            [1, 4, 3, 2, 1, 9],
+            [1, 5, 2, 1, 2, 2, 5],
+            [1, 5, 1, 2, 4, 2, 6],
         ]
         self.grid_rows = len(self.row_clues)
         self.grid_cols = len(self.col_clues)
@@ -67,34 +155,40 @@ class NonogramSolver:
             row_candidate = self.row_candidates[i]
             all_false = [True] * self.grid_cols
             all_true = [True] * self.grid_cols
-            for j in range(len(row_candidate)):
-                cand = row_candidate[j]
-                for k in range(self.grid_cols):
-                    if cand[k]:
-                        all_false[k] = False
-                    else:
-                        all_true[k] = False
-            for k in range(self.grid_cols):
-                if all_false[k]:
-                    self.mandatory_grid[i][k] = self.MANDATORY_X
-                elif all_true[k]:
-                    self.mandatory_grid[i][k] = self.MANDATORY_O
+            for j in range(self.grid_cols):
+                if self.mandatory_grid[i][j] is self.UNKNOWN:
+                    for cand in row_candidate:
+                        if cand[j]:
+                            all_false[j] = False
+                        else:
+                            all_true[j] = False
+                else:
+                    all_true[j] = False
+                    all_false[j] = False
+            for j in range(self.grid_cols):
+                if all_false[j]:
+                    self.mandatory_grid[i][j] = self.MANDATORY_X
+                elif all_true[j]:
+                    self.mandatory_grid[i][j] = self.MANDATORY_O
         for i in range(self.grid_cols):  # Check cols
             col_candidate = self.col_candidates[i]
             all_false = [True] * self.grid_rows
             all_true = [True] * self.grid_rows
-            for j in range(len(col_candidate)):
-                cand = col_candidate[j]
-                for k in range(self.grid_rows):
-                    if cand[k]:
-                        all_false[k] = False
-                    else:
-                        all_true[k] = False
-            for k in range(self.grid_rows):
-                if all_false[k]:
-                    self.mandatory_grid[k][i] = self.MANDATORY_X
-                elif all_true[k]:
-                    self.mandatory_grid[k][i] = self.MANDATORY_O
+            for j in range(self.grid_rows):
+                if self.mandatory_grid[j][i] is self.UNKNOWN:
+                    for cand in col_candidate:
+                        if cand[j]:
+                            all_false[j] = False
+                        else:
+                            all_true[j] = False
+                else:
+                    all_true[j] = False
+                    all_false[j] = False
+            for j in range(self.grid_rows):
+                if all_false[j]:
+                    self.mandatory_grid[j][i] = self.MANDATORY_X
+                elif all_true[j]:
+                    self.mandatory_grid[j][i] = self.MANDATORY_O
 
     def filter_candidates(self):
         # If successful in removing any rows/cols from candidates list, continues optimizing
@@ -103,8 +197,8 @@ class NonogramSolver:
             for cand in self.row_candidates[i][:]:
                 candidate_removed = False
                 for k in range(self.grid_cols):
-                    if ((cand[k] is True) and (self.mandatory_grid[i][k] == self.MANDATORY_X)) or \
-                       ((cand[k] is False) and (self.mandatory_grid[i][k] == self.MANDATORY_O)):
+                    if ((cand[k] is True) and (self.mandatory_grid[i][k] is self.MANDATORY_X)) or \
+                       ((cand[k] is False) and (self.mandatory_grid[i][k] is self.MANDATORY_O)):
                         self.row_candidates[i].remove(cand)
                         candidate_removed = True
                         continue_optimizing = True
@@ -115,14 +209,15 @@ class NonogramSolver:
             for cand in self.col_candidates[i][:]:
                 candidate_removed = False
                 for k in range(self.grid_rows):
-                    if ((cand[k] is True) and (self.mandatory_grid[k][i] == self.MANDATORY_X)) or \
-                       ((cand[k] is False) and (self.mandatory_grid[k][i] == self.MANDATORY_O)):
+                    if ((cand[k] is True) and (self.mandatory_grid[k][i] is self.MANDATORY_X)) or \
+                       ((cand[k] is False) and (self.mandatory_grid[k][i] is self.MANDATORY_O)):
                         self.col_candidates[i].remove(cand)
                         candidate_removed = True
                         continue_optimizing = True
                         break
                 if candidate_removed:
                     break
+
         return continue_optimizing
 
     def set_row_candidates(self):
