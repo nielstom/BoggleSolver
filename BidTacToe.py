@@ -207,6 +207,10 @@ def handle_input(player):
                         BID_STACK[1] -= bid_value[1]
                     else:
                         bidding_now = True
+                bid_value[0] = min(bid_value[0], BID_STACK[0])
+                bid_value[0] = max(bid_value[0], 0)
+                bid_value[1] = min(bid_value[1], BID_STACK[1])
+                bid_value[1] = max(bid_value[1], 0)
             else:
                 # Get the coordinates of the mouse click
                 mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -226,8 +230,11 @@ def handle_input(player):
 
 # Get AI's bid
 def get_ai_bid():
-    # TODO: If a win is possible, go all in
-    return randint(1, min(BID_STACK[1], BID_STACK[0]+1))
+    # TODO: max_bid if a win-in-one is possible for either player
+    # TODO: reduce max_bid if a win-in-one is not possible
+    min_bid = 1
+    max_bid = min(BID_STACK[1], BID_STACK[0]+1)
+    return randint(min_bid, max_bid)
 
 
 # Check for a winner
