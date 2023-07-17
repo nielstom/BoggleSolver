@@ -5,8 +5,8 @@ import numpy
 class BoggleSolver:
     def __init__(self):
         # Initialize Letter Grid
-        self.min_word_len = 6  # CONFIGURE
-        self.max_word_len = 10  # CONFIGURE
+        # agianttesderealcecetsvjaioepsfeounrlagctslgrciulsnwnldznoptiaobm
+        self.desired_word_len = 6  # CONFIGURE
         self.N = 0
         self.letters = []
         self.used = []
@@ -39,6 +39,7 @@ class BoggleSolver:
         wordlist_file = open("word-list.txt", "r")
         data = wordlist_file.read()
         self.wordlist_full = data.split("\n")
+        self.wordlist_full = {idx for idx in self.wordlist_full if len(idx) == self.desired_word_len}
         wordlist_file.close()
 
     def begin_solving(self):
@@ -49,17 +50,17 @@ class BoggleSolver:
                 self.create_words(r, c, "", 0)
 
     def filter_wordlist_by_first_letter(self, first_letter):
-        # Note the curly brackets! Searching sets is O(1). Sets are implemented using has tables.
+        # Note the curly brackets! Searching sets is O(1). Sets are implemented using hash tables.
         self.wordlist = {idx for idx in self.wordlist_full if idx[0] == first_letter}
 
     def create_words(self, row, col, word_string, word_len):
         # Recursively try each letter permutation
-        if self.used[row][col] or word_len == self.max_word_len:
+        if self.used[row][col] or word_len == self.desired_word_len:
             return
         self.used[row][col] = True
         word_string += self.letters[row][col]
         word_len += 1
-        if word_len >= self.min_word_len and self.is_word(word_string):
+        if word_len == self.desired_word_len and self.is_word(word_string):
             self.words.append(word_string)
         self.create_words(row-1, col-1, word_string, word_len)
         self.create_words(row-1, col, word_string, word_len)
@@ -78,6 +79,7 @@ class BoggleSolver:
         self.words = sorted(self.words, key=len)
 
     def print_words(self):
+        self.words = set(self.words)
         for word in self.words:
             print(word)
 
